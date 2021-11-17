@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Stories</h1>
+<%= form_tag stories_path, method: :get do %>
+  <div class="field">
+    <%= label_tag :serch_by %>
+    <%= text_field_tag :text, params[:text] %>
+  </div>
+
+  <div class="actions">
+    <%= submit_tag 'Search' %>
+  </div>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Ganre</th>
+      <th>ID</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @stories.each do |story| %>
+      <tr>
+        <td><%= story.title %></td>
+        <td><%= story.ganre %></td>
+        <td><%= story.id %></td>
+        <td><%= link_to 'Show', story_path(id: story.id) %></td>
+        <td><%= link_to 'Edit', edit_story_path(id: story.id) %></td>
+        <td><%= link_to 'Destroy', story_path(id: story.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Story', new_story_path %>

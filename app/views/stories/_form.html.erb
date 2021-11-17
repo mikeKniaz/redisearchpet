@@ -1,0 +1,32 @@
+<%= form_with(model: story, url: url, method: method, local: true) do |form| %>
+  <% if story.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(story.errors.count, "error") %> prohibited this story from being saved:</h2>
+
+      <ul>
+        <% story.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :ganre %>
+    <%= form.select :ganre, options_for_select(Story::GANRES) %>
+  </div>
+
+  <div class="field">
+    <%= form.label :body %>
+    <%= form.text_area :body %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

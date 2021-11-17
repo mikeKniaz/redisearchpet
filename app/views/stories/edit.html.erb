@@ -1,0 +1,6 @@
+<h1>Editing Story</h1>
+
+<%= render 'form', story: @story, url: story_path(id: @story.id), method: :patch %>
+
+<%= link_to 'Show', story_path(id: @story.id) %> |
+<%= link_to 'Back', stories_path %>
